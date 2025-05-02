@@ -1,73 +1,62 @@
-# Welcome to your Lovable project
+# Thoughtful AI Chat Agent
 
-## Project info
+A minimal, fully functional local web chat app built with React, TypeScript, Vite, and TailwindCSS. This app provides a conversational interface that first checks a hardcoded list of responses about Thoughtful AI, then falls back to an LLM response when needed.
 
-**URL**: https://lovable.dev/projects/12fcc61b-cc79-4987-8fed-dd530b6f5a70
+You can easily connect it to either a local LLM endpoint (e.g., llama.cpp) or OpenAI's API.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- Simple and responsive chat UI
+- FAQ-based matching with fallback to LLM
+- Built with modern tools: React, TypeScript, Vite, TailwindCSS
+- Easily pluggable with local or cloud-based LLM APIs
 
-**Use Lovable**
+## Getting Started
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/12fcc61b-cc79-4987-8fed-dd530b6f5a70) and start prompting.
+To run this project locally:
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js (v16 or higher recommended)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. Clone the repository:
 
-Follow these steps:
+   ```bash
+   git clone https://github.com/your-username/thoughtful-chat-agent.git
+   cd thoughtful-chat-agent
+2. Install dependencies
+   ```bash 
+   npm install 
+3. Run project.
+   ```bash
+   npm run dev
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## Configuration
 
-# Step 3: Install the necessary dependencies.
-npm i
+This app supports two types of LLM backends: OpenAI and a local LLM (e.g., Ollama). You can configure the backend by creating a `.env` file at the root of the project.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+### Using OpenAI
 
-**Edit a file directly in GitHub**
+1. Create a `.env` file at the root.
+2. Add the following line to it:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+VITE_OPENAI_API_KEY=your-openai-api-key
 
-**Use GitHub Codespaces**
+3. The app will automatically use OpenAI's API for LLM responses.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Using a Local LLM
 
-## What technologies are used for this project?
+1. Create a `.env` file at the root.
+2. Add the following line to it:
 
-This project is built with:
+VITE_LLM_API_URL=http://localhost:1234/v1/chat/completions
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+3. Make sure your local LLM server is running and accessible at the specified URL.
 
-## How can I deploy this project?
+### Notes
 
-Simply open [Lovable](https://lovable.dev/projects/12fcc61b-cc79-4987-8fed-dd530b6f5a70) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- If both values are provided, the app will default to the local LLM.
+- You must restart the dev server after updating `.env` values.
