@@ -1,5 +1,13 @@
 # Thoughtful AI Chat Agent
 
+[www.thoughtfulAI-Joses-Chat-project.com](https://thoughtfulai-lac.vercel.app/)
+![Thoughtful AI Logo - White Text](https://cdn.prod.website-files.com/61d48f7223249177544ef574/664227ada4b7b61c9a64773f_color_T_white_text.svg)
+
+
+
+
+
+
 A minimal, fully functional local web chat app built with React, TypeScript, Vite, and TailwindCSS. This app provides a conversational interface that first checks a hardcoded list of responses about Thoughtful AI, then falls back to an LLM response when needed.
 
 You can easily connect it to either a local LLM endpoint (e.g., llama.cpp) or OpenAI's API.
