@@ -33,6 +33,8 @@ To run this project locally:
 
    ```bash
    git clone https://github.com/your-username/thoughtful-chat-agent.git
+   ```
+   ```
    cd thoughtful-chat-agent
 2. Install dependencies
    ```bash 
