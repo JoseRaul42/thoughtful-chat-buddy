@@ -35,7 +35,7 @@ export function ChatInput({ onSendMessage, isLoading }: ChatInputProps) {
         type="submit" 
         disabled={!message.trim() || isLoading} 
         size="icon" 
-        className="bg-thoughtful-600 hover:bg-thoughtful-700"
+        className="bg-sky-600 hover:bg-sky-700" // Changed from thoughtful-600/700 to sky-600/700
       >
         <Send className="h-4 w-4" />
         <span className="sr-only">Send</span>

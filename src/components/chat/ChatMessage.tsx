@@ -28,8 +28,8 @@ export function ChatMessage({ content, isUser, timestamp }: ChatMessageProps) {
         className={cn(
           "max-w-[80%] rounded-lg px-4 py-2 whitespace-pre-wrap",
           isUser
-            ? "bg-thoughtful-600 text-white rounded-tr-none"
-            : "bg-gray-100 text-gray-900 rounded-tl-none"
+            ? "bg-sky-600 text-white rounded-tr-none" // Changed from thoughtful-600 to sky-600
+            : "bg-slate-100 text-gray-900 rounded-tl-none"
         )}
       >
         <div className="text-sm">{content}</div>
