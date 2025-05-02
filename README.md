@@ -32,7 +32,7 @@ To run this project locally:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/thoughtful-chat-agent.git
+   git clone https://github.com/JoseRaul42/thoughtful-chat-buddy.git
    ```
    ```
    cd thoughtful-chat-agent
