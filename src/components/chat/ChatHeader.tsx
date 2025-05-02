@@ -76,7 +76,7 @@ export function ChatHeader({ llmConfig, onConfigChange, clearChat }: ChatHeaderP
                   <Label htmlFor="localEndpoint">Local Endpoint</Label>
                   <Input 
                     id="localEndpoint" 
-                    value={localConfig.localEndpoint || 'http://localhost:11434/api/chat'} 
+                    value={localConfig.localEndpoint || 'http://localhost:1234/v1/chat/completions'} 
                     onChange={(e) => setLocalConfig({...localConfig, localEndpoint: e.target.value})}
                   />
                 </div>

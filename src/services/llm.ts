@@ -16,7 +16,7 @@ export interface LLMConfig {
 
 export const defaultLLMConfig: LLMConfig = {
   provider: 'local',
-  localEndpoint: 'http://localhost:1234/v1/chat'
+  localEndpoint: 'http://localhost:1234/v1/chat/completions'
 };
 
 export async function generateResponse(
@@ -27,7 +27,7 @@ export async function generateResponse(
     if (config.provider === 'openai') {
       return await callOpenAI(message, config.apiKey || '');
     } else {
-      return await callLocalLLM(message, config.localEndpoint || 'http://localhost:1234/v1/chat');
+      return await callLocalLLM(message, config.localEndpoint || 'http://localhost:1234/v1/chat/completions');
     }
   } catch (error: any) {
     console.error('Error generating LLM response:', error);
@@ -107,7 +107,6 @@ async function callLocalLLM(message: string, endpoint: string): Promise<LLMRespo
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: 'llama3', // Replace with your local model name
         messages: [
           {
             role: 'system',
@@ -117,20 +116,34 @@ async function callLocalLLM(message: string, endpoint: string): Promise<LLMRespo
             role: 'user',
             content: message
           }
-        ]
+        ],
+        temperature: 0.1,
+        max_tokens: 150
       })
     });
 
     if (!response.ok) {
-      const statusText = response.statusText || 'Unknown error';
-      throw new Error(`Local LLM API error: ${response.status} ${statusText}`);
+      console.error('API response not ok:', response.status, response.statusText);
+      throw new Error(`Local LLM API error: ${response.status} ${response.statusText || 'Unknown error'}`);
     }
 
     const data = await response.json();
-    const content = data.message?.content || data.response;
+    
+    // Handle different response formats
+    let content;
+    if (data.choices && data.choices[0] && data.choices[0].message) {
+      content = data.choices[0].message.content; // Standard OpenAI format
+    } else if (data.message && data.message.content) {
+      content = data.message.content; // Format used by some local models
+    } else if (data.response) {
+      content = data.response; // Simple response format
+    } else {
+      console.error('Unexpected response format:', data);
+      throw new Error('Invalid response format from local LLM');
+    }
     
     if (!content) {
-      throw new Error('Invalid response format from local LLM');
+      throw new Error('Failed to extract content from response');
     }
     
     return {
@@ -139,7 +152,6 @@ async function callLocalLLM(message: string, endpoint: string): Promise<LLMRespo
     };
   } catch (error: any) {
     console.error('Error calling local LLM:', error);
-    // Return the specific error but also throw it so it can be handled by the main function
     throw new Error(`Local LLM error: ${error.message}`);
   }
 }
