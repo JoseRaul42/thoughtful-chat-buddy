@@ -46,27 +46,24 @@ To run this project locally:
 
 ## Configuration
 
-This app supports two types of LLM backends: OpenAI and a local LLM (e.g., Ollama). You can configure the backend by creating a `.env` file at the root of the project.
+This app supports two types of LLM backends: OpenAI and a local LLM (e.g., Ollama).
 
 ### Using OpenAI
 
-1. Create a `.env` file at the root.
-2. Add the following line to it:
-
-VITE_OPENAI_API_KEY=your-openai-api-key
-
-3. The app will automatically use OpenAI's API for LLM responses.
+Add your openAI api key in the settings.
+```bash
+sk-your-api-key
+```
+ The app will then use OpenAI's API for LLM responses.
 
 ### Using a Local LLM
 
-1. Create a `.env` file at the root.
-2. Add the following line to it:
-
-VITE_LLM_API_URL=http://localhost:1234/v1/chat/completions
-
-3. Make sure your local LLM server is running and accessible at the specified URL.
+Add your Local LLM server url in the settings.
+```bash
+http://localhost:1234/v1/chat/completions
+```
+Make sure your local LLM server is running and accessible at the specified URL.
 
 ### Notes
 
 - If both values are provided, the app will default to the local LLM.
-- You must restart the dev server after updating `.env` values.
